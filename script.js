@@ -48,9 +48,9 @@ function créé_carte({valeur, suit, index_suit, index_valeur}) {
     positions.push([TOP, LEFT]);
     // positionnement des valeur et suit sur l'objet carte qui est un elem div et representation de l'ement sur la page web
     carte.innerHTML = `
-        <span class="number top">${valeur}</span>
+        <span class="numero top">${valeur}</span>
         <p class="suit">${suit.icon}</p>
-        <span class="number bottom">${valeur}</span>`;
+        <span class="numero bottom">${valeur}</span>`;
     //inséré la carte dans le container 
     container.appendChild(carte)
 }
