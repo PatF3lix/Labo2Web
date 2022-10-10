@@ -20,15 +20,15 @@ const SUITS = [
     }
 ];
 
-const SPACING = 10;
-const VALUES = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+const ESPACEMENT = 10;
+const VALEURS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 let positions = [];
 // element html div
 const container = document.getElementById('container');
 // element html boutton
 const brasser_cartes = document.getElementById('brasserCartes')
 
-function createCard({value, suit, index_suit, index_value}) {
+function créé_carte({valeur, suit, index_suit, index_valeur}) {
     // crée une carte comme un element div
     const carte = document.createElement('div');
     // ajouter l'attribut carte a l'objet carte
@@ -38,33 +38,33 @@ function createCard({value, suit, index_suit, index_value}) {
         carte.classList.add('rouge');
     }else{carte.classList.add('noir')}
 
-    // positionnement des carte sur l'interface graphique
-    TOP = index_suit * 150 + SPACING * index_suit +'px';
-    LEFT = index_value * 100 + SPACING * index_value + 'px';
-    // revoir ce code avec le prof pour plus d'info
+    // positionnement de cartes sur l'interface graphique.
+    TOP = index_suit * 150 + ESPACEMENT * index_suit +'px';
+    LEFT = index_valeur * 100 + ESPACEMENT * index_valeur + 'px';
+    // revoir ce code avec le prof pour plus d'info.***
     carte.style.top = TOP
     carte.style.left = LEFT
-    // inséré les positionnement dans une liste
+    // inséré les positionnements des cartes dans une liste
     positions.push([TOP, LEFT]);
     // positionnement des valeur et suit sur l'objet carte qui est un elem div et representation de l'ement sur la page web
     carte.innerHTML = `
-        <span class="number top">${value}</span>
+        <span class="number top">${valeur}</span>
         <p class="suit">${suit.icon}</p>
-        <span class="number bottom">${value}</span>`;
+        <span class="number bottom">${valeur}</span>`;
     //inséré la carte dans le container 
     container.appendChild(carte)
 }
 
 // Créé le paquet de 52 carte
 SUITS.forEach((suit, index_suit) => {
-    VALUES.forEach((value, index_value) => {
+    VALEURS.forEach((valeur, index_valeur) => {
         const Detailscarte = {
-            value,
+            valeur,
             suit,
             index_suit,
-            index_value
+            index_valeur
         }
-        createCard(Detailscarte);
+        créé_carte(Detailscarte);
     });
 });
 // crée une liste de toutes les cartes
