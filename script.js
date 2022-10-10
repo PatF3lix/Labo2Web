@@ -1,109 +1,115 @@
 // src"https://www.youtube.com/watch?v=LxXWTXOny3A"
-// src"youtube.com/watch?v=JSePZ82OLaw"
+// src"www.youtube.com/watch?v=JSePZ82OLaw"
 
 const SUITS = [
     {   
         icon: '♦', 
-        color: 'red',
+        couleur: 'rouge',
     }, 
     {
         icon: '♣',
-        color: 'black',
+        couleur: 'noir',
     }, 
     {
         icon: '♥', 
-        color: 'red',
+        couleur: 'rouge',
     }, 
     {
         icon:'♠',
-        color: 'black',
+        couleur: 'noir',
     }
 ];
 
 const SPACING = 10;
 const VALUES = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 let positions = [];
-
+// element html div
 const container = document.getElementById('container');
-const ShuffleCards = document.getElementById('ShuffleCards')
-
+// element html boutton
+const brasser_cartes = document.getElementById('brasserCartes')
 
 function createCard({value, suit, index_suit, index_value}) {
-    const card = document.createElement('div');
-    card.classList.add('card');
+    // crée une carte comme un element div
+    const carte = document.createElement('div');
+    // ajouter l'attribut carte a l'objet care
+    carte.classList.add('carte');
+    // ajout d'attribut couleur
+    if(suit.couleur == 'rouge') {
+        carte.classList.add('rouge');
+    }else{carte.classList.add('noir')}
 
-    if(suit.color == 'red') {
-        card.classList.add('red');
-    }else{card.classList.add('black')}
-
-
+    // positionnement des carte sur l'interface graphique
     TOP = index_suit * 150 + SPACING * index_suit +'px';
     LEFT = index_value * 100 + SPACING * index_value + 'px';
-
-    card.style.top = TOP
-    card.style.left = LEFT
+    // revoir ce code avec le prof pour plus d'info
+    carte.style.top = TOP
+    carte.style.left = LEFT
+    // inséré les positionnement dans une liste
     positions.push([TOP, LEFT]);
-    card.innerHTML = `
+    // positionnement des valeur et suit sur l'objet carte qui est un elem div et representation de l'ement sur la page web
+    carte.innerHTML = `
         <span class="number top">${value}</span>
         <p class="suit">${suit.icon}</p>
         <span class="number bottom">${value}</span>`;
-    container.appendChild(card)
+    //inséré la carte dans le container 
+    container.appendChild(carte)
 }
 
-// Creating the cards
+// Créé le paquet de 52 carte
 SUITS.forEach((suit, index_suit) => {
     VALUES.forEach((value, index_value) => {
-        const cardDetails = {
+        const Detailscarte = {
             value,
             suit,
             index_suit,
             index_value
         }
-        createCard(cardDetails);
+        createCard(Detailscarte);
     });
 });
+// crée une liste de toutes les cartes
+cartes = document.querySelectorAll('.carte');
 
-cards = document.querySelectorAll('.card');
+brasser_cartes.addEventListener('click', () => {
 
-ShuffleCards.addEventListener('click', () => {
-
-    cards.forEach((card, index) => {
+    cartes.forEach((carte, index) => {
         setTimeout( () => {
-            card.styleZindex = 52 - index
-            card.style.top = '50%';
-            card.style.left = '50%';
+            // revoir ici avec le prof
+            carte.styleZindex = 52 - index
+            carte.style.top = '50%';
+            carte.style.left = '50%';
         }, index * 50);
     });
 
-    setTimeout(shuffleBack, 3000);
+    setTimeout(mise_en_place, 3000);
 });
 
-function shuffleBack() {
-    shuffleCards()
-    cards.forEach((card, index) => {
+function mise_en_place() {
+    brassage()
+    cartes.forEach((carte, index) => {
         setTimeout( () => {
-            card.styleZindex = 52 - index
-            card.style.top = positions[index][0];
-            card.style.left = positions[index][1];
+            carte.styleZindex = 52 - index
+            carte.style.top = positions[index][0];
+            carte.style.left = positions[index][1];
         }, index * 50);
     });
 }
 
-function shuffleCards() {
-    half1 = []
-    half2 = []
-    shuffledDeck = []
-    HALF = 26
-    for(let index = 0; index < HALF; index++){
-        half1.push(cards[index])
-        half2.push(cards[index+26])
+function brassage() {
+    moitié1 = []
+    moitié2 = []
+    paquet_brassé = []
+    const MOITIÉ = 26
+    for(let index = 0; index < MOITIÉ; index++){
+        moitié1.push(cartes[index])
+        moitié2.push(cartes[index+26])
     }
 
     for (let index = 0; index < 26; index++){
-        shuffledDeck.push(half1[index])
-        shuffledDeck.push(half2[index])
+        paquet_brassé.push(moitié1[index])
+        paquet_brassé.push(moitié2[index])
     }
-    cards = shuffledDeck
+    cartes = paquet_brassé
 }
 
 
