@@ -22,10 +22,11 @@ const SUITS = [
 
 const SPACING = 10;
 const VALUES = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-const mycardset = [];
+let positions = [];
 
 const container = document.getElementById('container');
-const buttonshuffle = document.getElementById('shuffle')
+const ShuffleCards = document.getElementById('ShuffleCards')
+
 
 function createCard({value, suit, index_suit, index_value}) {
     const card = document.createElement('div');
@@ -35,8 +36,13 @@ function createCard({value, suit, index_suit, index_value}) {
         card.classList.add('red');
     }else{card.classList.add('black')}
 
-    card.style.top = index_suit * 150 + SPACING * index_suit +'px';
-    card.style.left = index_value * 100 + SPACING * index_value + 'px';
+
+    TOP = index_suit * 150 + SPACING * index_suit +'px';
+    LEFT = index_value * 100 + SPACING * index_value + 'px';
+
+    card.style.top = TOP
+    card.style.left = LEFT
+    positions.push([TOP, LEFT]);
     card.innerHTML = `
         <span class="number top">${value}</span>
         <p class="suit">${suit.icon}</p>
@@ -57,8 +63,9 @@ SUITS.forEach((suit, index_suit) => {
     });
 });
 
-buttonshuffle.addEventListener('click', () => {
-    const cards = document.querySelectorAll('.card');
+cards = document.querySelectorAll('.card');
+
+ShuffleCards.addEventListener('click', () => {
 
     cards.forEach((card, index) => {
         setTimeout( () => {
@@ -67,19 +74,34 @@ buttonshuffle.addEventListener('click', () => {
             card.style.left = '50%';
         }, index * 50);
     });
+
+    setTimeout(shuffleBack, 3000);
 });
 
+function shuffleBack() {
+    shuffleCards()
+    cards.forEach((card, index) => {
+        setTimeout( () => {
+            card.styleZindex = 52 - index
+            card.style.top = positions[index][0];
+            card.style.left = positions[index][1];
+        }, index * 50);
+    });
+}
 
-//     shuffling() {
-//         halfDeck1 = this.mycardset.slice(0, this.half)
-//         halfDeck2 = this.mycardset.slice(this.half, 51)
-//         shuffledDeck = []
-        
-//         for (var index = 0; index < half; index++){
-//             shuffledDeck.push(halfDeck1[index])
-//             shuffledDeck.push(halfDeck2[index])
-//         }
-//         this.mycardset = shuffledDeck
+
+function shuffleCards() {
+    const half1 = positions.slice(0, 26);
+    const half2 = positions.slice(26, 52)
+    shuffled = []
+    for (let index=0; index < 26; index++){
+        shuffled.push(half1[index]);
+        shuffled.push(half2[index]);
+    }
+    positions = shuffled
+}
+
+
 //     }
 //     afficher_paquet_carte() {
 //         for (var index = 0; index < this.mycardset; index++) {
