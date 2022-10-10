@@ -89,29 +89,23 @@ function shuffleBack() {
     });
 }
 
-
 function shuffleCards() {
-    const half1 = positions.slice(0, 26);
-    const half2 = positions.slice(26, 52)
-    shuffled = []
-    for (let index=0; index < 26; index++){
-        shuffled.push(half1[index]);
-        shuffled.push(half2[index]);
+    half1 = []
+    half2 = []
+    shuffledDeck = []
+    HALF = 26
+    for(let index = 0; index < HALF; index++){
+        half1.push(cards[index])
+        half2.push(cards[index+26])
     }
-    positions = shuffled
+
+    for (let index = 0; index < 26; index++){
+        shuffledDeck.push(half1[index])
+        shuffledDeck.push(half2[index])
+    }
+    cards = shuffledDeck
 }
 
-
-//     }
-//     afficher_paquet_carte() {
-//         for (var index = 0; index < this.mycardset; index++) {
-//             if (index % length(this.mycardset) == 0 && index > 1) {
-//                 print()
-//             }else{
-//                 print(objDeck.mycardset[i], end=" ")
-//             }
-//         }
-//     }
 
 //     ecrire_au_fichier() {
 //         // with open('Deck_of_cards.txt', 'w', encoding="utf-8") as f:
