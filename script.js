@@ -31,7 +31,7 @@ const brasser_cartes = document.getElementById('brasserCartes')
 function createCard({value, suit, index_suit, index_value}) {
     // crée une carte comme un element div
     const carte = document.createElement('div');
-    // ajouter l'attribut carte a l'objet care
+    // ajouter l'attribut carte a l'objet carte
     carte.classList.add('carte');
     // ajout d'attribut couleur
     if(suit.couleur == 'rouge') {
@@ -71,19 +71,20 @@ SUITS.forEach((suit, index_suit) => {
 cartes = document.querySelectorAll('.carte');
 
 brasser_cartes.addEventListener('click', () => {
-
     cartes.forEach((carte, index) => {
+        //La méthode setTimeout() appelle une fonction après un certain nombre de millisecondes. 
         setTimeout( () => {
-            // revoir ici avec le prof
+            // fonction qui permet le deplacement de toutes les cartes vers le centre de la page.
             carte.styleZindex = 52 - index
             carte.style.top = '50%';
             carte.style.left = '50%';
-        }, index * 50);
+            // temps d'execution entre chaque appel pour que il y est une fluidité
+        }, index * 50); 
     });
-
+    
     setTimeout(mise_en_place, 3000);
 });
-
+// replacer toutes les cartes a leur positionnement après avoir brasser
 function mise_en_place() {
     brassage()
     cartes.forEach((carte, index) => {
@@ -94,7 +95,7 @@ function mise_en_place() {
         }, index * 50);
     });
 }
-
+// brassage inter-coupé
 function brassage() {
     moitié1 = []
     moitié2 = []
