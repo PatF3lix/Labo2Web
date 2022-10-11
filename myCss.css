@@ -1,7 +1,7 @@
 body {
     background-color: #03152e;
 }
-/* https://www.youtube.com/watch?v=JSePZ82OLaw */
+
 /* ask why they use container */
 .container{
     position: relative;
@@ -12,6 +12,7 @@ body {
     margin-top: 10%;
     margin-left: 46.3%;
 }
+/* https://www.youtube.com/watch?v=JSePZ82OLaw */
 .carte {
     
     background-color: white;

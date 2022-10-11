@@ -20,7 +20,7 @@ const SUITS = [
     }
 ];
 
-const ESPACEMENT = 10;
+const ESPACEMENT = 15;
 const VALEURS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 let positions = [];
 // element html div
@@ -73,14 +73,34 @@ cartes = document.querySelectorAll('.carte');
 brasser_cartes.addEventListener('click', () => {
     cartes.forEach((carte, index) => {
         //La méthode setTimeout() appelle une fonction après un certain nombre de millisecondes. 
-        setTimeout( () => {
-            // fonction qui permet le deplacement de toutes les cartes vers le centre de la page.
-            carte.styleZindex = 52 - index
-            carte.style.top = '100%';
-            carte.style.left = '36%';
-            // temps d'execution entre chaque appel pour que il y est une fluidité
-        }, index * 50); 
+        if (index < 26) {
+            setTimeout( () => {
+                // fonction qui permet le deplacement de toutes les cartes vers le centre de la page.
+                carte.styleZindex = 52 - index
+                carte.style.top = '100%';
+                carte.style.left = '26%';
+                // temps d'execution entre chaque appel pour que il y est une fluidité
+            }, index * 50);
+        }else {
+            setTimeout( () => {
+                carte.styleZindex = 52 - index
+                carte.style.top = '100%';
+                carte.style.left = '46%';
+            }, index * 50);
+        }
+
     });
+    cartes.forEach((carte, index) =>{
+        setTimeout( () => {
+        carte.style.transform = 'rotate(90deg)'
+    }, index * 50);
+    })
+
+
+
+    // setTimeout( () => {
+    //     carte.style.transform = 'rotate(270deg)'
+    // }, index * 50);
     
     setTimeout(mise_en_place, 3000);
 });
