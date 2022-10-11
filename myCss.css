@@ -1,13 +1,17 @@
 body {
     background-color: #03152e;
 }
-
+/* https://www.youtube.com/watch?v=JSePZ82OLaw */
 /* ask why they use container */
 .container{
     position: relative;
+    left: 10%;
     height: 700px;
 }
-/* https://www.youtube.com/watch?v=JSePZ82OLaw */
+#brasserCartes{
+    margin-top: 10%;
+    margin-left: 46.3%;
+}
 .carte {
     
     background-color: white;

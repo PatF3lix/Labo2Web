@@ -76,8 +76,8 @@ brasser_cartes.addEventListener('click', () => {
         setTimeout( () => {
             // fonction qui permet le deplacement de toutes les cartes vers le centre de la page.
             carte.styleZindex = 52 - index
-            carte.style.top = '50%';
-            carte.style.left = '50%';
+            carte.style.top = '100%';
+            carte.style.left = '36%';
             // temps d'execution entre chaque appel pour que il y est une fluidité
         }, index * 50); 
     });
