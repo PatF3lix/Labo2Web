@@ -96,6 +96,12 @@ function mise_en_place() {
     });
 }
 // brassage inter-coupé
+/**
+ * ! text in front of exclamation mark will be red
+ * TODO text after a todo will come out orange
+ * if you clink on the link it will brings you to the function it refers to.
+ * {@link créé_carte}
+ */
 function brassage() {
     moitié1 = []
     moitié2 = []
